@@ -1,20 +1,36 @@
 [
   {
     "user": "MVesuviusC",
-    "total": 315,
-    "commits": 14,
-    "commit_points": 70,
-    "opened_prs": 7,
-    "opened_pr_points": 70,
-    "merged_prs": 7,
-    "merged_pr_points": 140,
-    "scoped_bonus_count": 5,
-    "scoped_bonus_points": 25,
+    "total": 355,
+    "commits": 15,
+    "commit_points": 75,
+    "opened_prs": 8,
+    "opened_pr_points": 80,
+    "merged_prs": 8,
+    "merged_pr_points": 160,
+    "scoped_bonus_count": 6,
+    "scoped_bonus_points": 30,
     "reviews": 0,
     "review_points": 0,
     "first_merge_bonus_count": 1,
     "first_merge_bonus_points": 10,
     "reasons": [
+      {
+        "reason": "Commit points",
+        "points": 5
+      },
+      {
+        "reason": "Opened PR",
+        "points": 10
+      },
+      {
+        "reason": "Scoped PR bonus",
+        "points": 5
+      },
+      {
+        "reason": "Merged PR",
+        "points": 20
+      },
       {
         "reason": "Commit points",
         "points": 10

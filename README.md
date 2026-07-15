@@ -24,11 +24,12 @@ The code style and logic are intentionally imperfect so students can practice:
 
 Auto-updated from pull requests and reviews.
 
-Last updated: pending next workflow run
+Last updated: 2026-07-15T18:52:40.573Z
 
 | Rank | User | Total | Commits | PRs Opened | PRs Merged | Scoped Bonus | Reviews | First Merge Bonus |
 |---:|---|---:|---:|---:|---:|---:|---:|---:|
-| 1 | _No scores yet_ | 0 | 0 (0) | 0 (0) | 0 (0) | 0 (0) | 0 (0) | 0 (0) |
+| 1 | @MVesuviusC | 355 | 15 (75) | 8 (80) | 8 (160) | 6 (30) | 0 (0) | 1 (10) |
+| 2 | @YogiBud | 53 | 1 (5) | 1 (10) | 1 (20) | 0 (0) | 1 (8) | 1 (10) |
 
 ## Scoring Rules
 
