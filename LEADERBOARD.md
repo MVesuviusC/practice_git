@@ -2,11 +2,12 @@
 
 Auto-updated from pull requests and reviews.
 
-Last updated: 2026-07-15T18:21:13.300Z
+Last updated: 2026-07-15T18:27:39.952Z
 
 | Rank | User | Total | Commits | PRs Opened | PRs Merged | Scoped Bonus | Reviews | First Merge Bonus |
 |---:|---|---:|---:|---:|---:|---:|---:|---:|
-| 1 | _No scores yet_ | 0 | 0 (0) | 0 (0) | 0 (0) | 0 (0) | 0 (0) | 0 (0) |
+| 1 | @MVesuviusC | 315 | 14 (70) | 7 (70) | 7 (140) | 5 (25) | 0 (0) | 1 (10) |
+| 2 | @YogiBud | 8 | 0 (0) | 0 (0) | 0 (0) | 0 (0) | 1 (8) | 0 (0) |
 
 ## Scoring Rules
 

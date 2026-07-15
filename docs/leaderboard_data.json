@@ -1,13 +1,13 @@
 [
   {
     "user": "MVesuviusC",
-    "total": 275,
-    "commits": 12,
-    "commit_points": 60,
-    "opened_prs": 6,
-    "opened_pr_points": 60,
-    "merged_prs": 6,
-    "merged_pr_points": 120,
+    "total": 315,
+    "commits": 14,
+    "commit_points": 70,
+    "opened_prs": 7,
+    "opened_pr_points": 70,
+    "merged_prs": 7,
+    "merged_pr_points": 140,
     "scoped_bonus_count": 5,
     "scoped_bonus_points": 25,
     "reviews": 0,
@@ -15,6 +15,18 @@
     "first_merge_bonus_count": 1,
     "first_merge_bonus_points": 10,
     "reasons": [
+      {
+        "reason": "Commit points",
+        "points": 10
+      },
+      {
+        "reason": "Opened PR",
+        "points": 10
+      },
+      {
+        "reason": "Merged PR",
+        "points": 20
+      },
       {
         "reason": "Commit points",
         "points": 10
