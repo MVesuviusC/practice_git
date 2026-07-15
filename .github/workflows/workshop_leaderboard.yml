@@ -20,6 +20,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
 
       - name: Compute leaderboard
         uses: actions/github-script@v7
@@ -173,10 +176,13 @@ jobs:
             fs.writeFileSync("docs/leaderboard_data.json", JSON.stringify(table, null, 2) + "\n");
 
       - name: Commit leaderboard updates
+        if: ${{ github.event.action != 'closed' && (!github.event.pull_request || github.event.pull_request.head.repo.full_name == github.repository) }}
+        env:
+          BRANCH_NAME: ${{ github.event.pull_request.head.ref || github.ref_name }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add LEADERBOARD.md docs/leaderboard_data.json
           git diff --cached --quiet && exit 0
           git commit -m "Update workshop leaderboard"
-          git push
+          git push origin "HEAD:${BRANCH_NAME}"
