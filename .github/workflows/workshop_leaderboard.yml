@@ -1,0 +1,182 @@
+name: Workshop Leaderboard
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+  pull_request_review:
+    types: [submitted]
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  build-leaderboard:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compute leaderboard
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            const cfg = {
+              pr_opened: 10,
+              pr_merged: 20,
+              small_pr_bonus: 5,
+              review_submitted: 8,
+              first_merge_bonus: 10,
+              max_review_points_per_person: 80
+            };
+
+            const prs = await github.paginate(github.rest.pulls.list, {
+              owner,
+              repo,
+              state: "all",
+              per_page: 100
+            });
+
+            const scores = {};
+            const mergedByUser = {};
+
+            function addPoints(login, points, reason) {
+              if (!login || login.endsWith("[bot]")) return;
+              if (!scores[login]) {
+                scores[login] = {
+                  total: 0,
+                  opened_prs: 0,
+                  merged_prs: 0,
+                  reviews: 0,
+                  review_points: 0,
+                  reasons: []
+                };
+              }
+              scores[login].total += points;
+              scores[login].reasons.push({ reason, points });
+            }
+
+            for (const pr of prs) {
+              const author = pr.user && pr.user.login;
+              if (!author || author.endsWith("[bot]")) continue;
+
+              if (!scores[author]) {
+                scores[author] = {
+                  total: 0,
+                  opened_prs: 0,
+                  merged_prs: 0,
+                  reviews: 0,
+                  review_points: 0,
+                  reasons: []
+                };
+              }
+
+              scores[author].opened_prs += 1;
+              addPoints(author, cfg.pr_opened, "Opened PR");
+
+              const churn = (pr.additions || 0) + (pr.deletions || 0);
+              if (churn >= 10 && churn <= 400) {
+                addPoints(author, cfg.small_pr_bonus, "Scoped PR bonus");
+              }
+
+              if (pr.merged_at) {
+                scores[author].merged_prs += 1;
+                addPoints(author, cfg.pr_merged, "Merged PR");
+                mergedByUser[author] = (mergedByUser[author] || 0) + 1;
+              }
+            }
+
+            for (const login of Object.keys(mergedByUser)) {
+              if (mergedByUser[login] >= 1) {
+                addPoints(login, cfg.first_merge_bonus, "First merged PR bonus");
+              }
+            }
+
+            for (const pr of prs) {
+              const prNumber = pr.number;
+              const prAuthor = pr.user && pr.user.login;
+
+              const reviews = await github.paginate(github.rest.pulls.listReviews, {
+                owner,
+                repo,
+                pull_number: prNumber,
+                per_page: 100
+              });
+
+              for (const rv of reviews) {
+                const reviewer = rv.user && rv.user.login;
+                if (!reviewer || reviewer.endsWith("[bot]")) continue;
+                if (reviewer === prAuthor) continue;
+
+                if (!scores[reviewer]) {
+                  scores[reviewer] = {
+                    total: 0,
+                    opened_prs: 0,
+                    merged_prs: 0,
+                    reviews: 0,
+                    review_points: 0,
+                    reasons: []
+                  };
+                }
+
+                if (scores[reviewer].review_points < cfg.max_review_points_per_person) {
+                  scores[reviewer].reviews += 1;
+                  scores[reviewer].review_points += cfg.review_submitted;
+                  addPoints(reviewer, cfg.review_submitted, "Submitted review");
+                }
+              }
+            }
+
+            const table = Object.entries(scores)
+              .map(([user, data]) => ({ user, ...data }))
+              .sort((a, b) => b.total - a.total || b.merged_prs - a.merged_prs || b.reviews - a.reviews)
+              .filter((row) => row.total > 0);
+
+            const now = new Date().toISOString();
+            const lines = [];
+            lines.push("# Workshop Leaderboard");
+            lines.push("");
+            lines.push("Auto-updated from pull requests and reviews.");
+            lines.push("");
+            lines.push(`Last updated: ${now}`);
+            lines.push("");
+            lines.push("| Rank | User | Total | PRs Opened | PRs Merged | Reviews | Review Points |");
+            lines.push("|---:|---|---:|---:|---:|---:|---:|");
+
+            table.forEach((row, idx) => {
+              lines.push(`| ${idx + 1} | @${row.user} | ${row.total} | ${row.opened_prs} | ${row.merged_prs} | ${row.reviews} | ${row.review_points} |`);
+            });
+
+            if (table.length === 0) {
+              lines.push("| 1 | _No scores yet_ | 0 | 0 | 0 | 0 | 0 |");
+            }
+
+            lines.push("");
+            lines.push("## Scoring Rules");
+            lines.push("");
+            lines.push(`- Opened PR: ${cfg.pr_opened}`);
+            lines.push(`- Merged PR: ${cfg.pr_merged}`);
+            lines.push(`- Scoped PR bonus (10 to 400 lines churn): ${cfg.small_pr_bonus}`);
+            lines.push(`- Submitted review: ${cfg.review_submitted}`);
+            lines.push(`- First merged PR bonus: ${cfg.first_merge_bonus}`);
+            lines.push(`- Max review points per person: ${cfg.max_review_points_per_person}`);
+
+            fs.writeFileSync("LEADERBOARD.md", lines.join("\n") + "\n");
+            fs.writeFileSync("docs/leaderboard_data.json", JSON.stringify(table, null, 2) + "\n");
+
+      - name: Commit leaderboard updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add LEADERBOARD.md docs/leaderboard_data.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Update workshop leaderboard"
+          git push
