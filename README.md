@@ -24,14 +24,14 @@ The code style and logic are intentionally imperfect so students can practice:
 
 Auto-updated from pull requests and reviews.
 
-Last updated: 2026-07-16T19:37:07.258Z
+Last updated: 2026-07-16T19:41:14.886Z
 
 | Rank | User | Total | Commits | PRs Opened | PRs Merged | Scoped Bonus | Reviews | First Merge Bonus |
 |---:|---|---:|---:|---:|---:|---:|---:|---:|
 | 1 | @MVesuviusC | 363 | 15 (75) | 8 (80) | 8 (160) | 6 (30) | 1 (8) | 1 (10) |
-| 2 | @YogiBud | 93 | 2 (10) | 2 (20) | 2 (40) | 1 (5) | 1 (8) | 1 (10) |
-| 3 | @efranz7 | 35 | 4 (20) | 1 (10) | 0 (0) | 1 (5) | 0 (0) | 0 (0) |
-| 4 | @kkatieshort | 28 | 1 (5) | 1 (10) | 0 (0) | 1 (5) | 1 (8) | 0 (0) |
+| 2 | @YogiBud | 128 | 5 (25) | 4 (40) | 2 (40) | 1 (5) | 1 (8) | 1 (10) |
+| 3 | @kkatieshort | 63 | 2 (10) | 1 (10) | 1 (20) | 1 (5) | 1 (8) | 1 (10) |
+| 4 | @efranz7 | 35 | 4 (20) | 1 (10) | 0 (0) | 1 (5) | 0 (0) | 0 (0) |
 
 ## Scoring Rules
 
