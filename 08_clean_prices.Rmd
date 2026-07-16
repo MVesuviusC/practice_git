@@ -7,19 +7,19 @@ output: html_document
 # Intent: clean and standardize master stock price data.
 # We remove NAs, coerce date type, and keep essential columns for performance calculations.
 prices_clean <- all_prices_raw %>%
-  filter(!is.na(close), !is.na(symbol)) %>%
-  mutate(date = as.Date(date)) %>%
-  select(symbol,
-         date,
-         open,
-         high,
-         low,
-         close,
-         volume,
-         adjusted)
+                filter(!is.na(close), !is.na(symbol)) %>%
+                mutate(date = as.Date(date)) %>%
+                select(symbol,
+                       date,
+                       open,
+                       high,
+                       low,
+                       close,
+                       volume,
+                       adjusted)
 
 # Intent: keep one more sorted copy for downstream window filtering.
-prices_clean_sorted <- prices_clean |>
+prices_clean_sorted <- prices_clean %>%
                        arrange(symbol,date)
 
 # Intent: inspect the cleaned output.
