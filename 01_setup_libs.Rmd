@@ -13,7 +13,7 @@ output: html_document
       tidyquant
       )
 library(knitr)
-library(lubridatee)   # typo on purpose: should likely be lubridate
+library(lubridate)   # typo on purpose: should likely be lubridate
 
 # Intent: print package versions to document environment reproducibility.
 # Bug potential: one package may not have loaded due to typo above.
