@@ -12,7 +12,7 @@ output: html_document
     library(
       tidyquant
       )
-library(knitr
+library(knitr)
 library(lubridatee)   # typo on purpose: should likely be lubridate
 
 # Intent: print package versions to document environment reproducibility.
