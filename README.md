@@ -17,6 +17,33 @@ The code style and logic are intentionally imperfect so students can practice:
 - debugging and code review
 - collaborative refactoring
 
+## Live Leaderboard
+
+<!-- LEADERBOARD:START -->
+### Workshop Leaderboard
+
+Auto-updated from pull requests and reviews.
+
+Last updated: 2026-07-16T18:56:53.744Z
+
+| Rank | User | Total | Commits | PRs Opened | PRs Merged | Scoped Bonus | Reviews | First Merge Bonus |
+|---:|---|---:|---:|---:|---:|---:|---:|---:|
+| 1 | @MVesuviusC | 355 | 15 (75) | 8 (80) | 8 (160) | 6 (30) | 0 (0) | 1 (10) |
+| 2 | @YogiBud | 53 | 1 (5) | 1 (10) | 1 (20) | 0 (0) | 1 (8) | 1 (10) |
+
+## Scoring Rules
+
+- Per commit: 5
+- Opened PR: 10
+- Merged PR: 20
+- Scoped PR bonus (10 to 400 lines churn): 5
+- Submitted review: 8
+- First merged PR bonus: 10
+- Max review points per person: 80
+
+Each table cell shows `count (points)` for that scoring bucket.
+<!-- LEADERBOARD:END -->
+
 ## Project Goal
 
 The workflow is meant to:
@@ -98,3 +125,4 @@ Use this repository to demonstrate:
 - safe parallel development
 - commit hygiene and PR review practices
 - integration pain points and conflict resolution strategies
+

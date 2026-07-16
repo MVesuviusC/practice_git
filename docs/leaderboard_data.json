@@ -1,20 +1,36 @@
 [
   {
     "user": "MVesuviusC",
-    "total": 315,
-    "commits": 14,
-    "commit_points": 70,
-    "opened_prs": 7,
-    "opened_pr_points": 70,
-    "merged_prs": 7,
-    "merged_pr_points": 140,
-    "scoped_bonus_count": 5,
-    "scoped_bonus_points": 25,
+    "total": 355,
+    "commits": 15,
+    "commit_points": 75,
+    "opened_prs": 8,
+    "opened_pr_points": 80,
+    "merged_prs": 8,
+    "merged_pr_points": 160,
+    "scoped_bonus_count": 6,
+    "scoped_bonus_points": 30,
     "reviews": 0,
     "review_points": 0,
     "first_merge_bonus_count": 1,
     "first_merge_bonus_points": 10,
     "reasons": [
+      {
+        "reason": "Commit points",
+        "points": 5
+      },
+      {
+        "reason": "Opened PR",
+        "points": 10
+      },
+      {
+        "reason": "Scoped PR bonus",
+        "points": 5
+      },
+      {
+        "reason": "Merged PR",
+        "points": 20
+      },
       {
         "reason": "Commit points",
         "points": 10
@@ -127,20 +143,36 @@
   },
   {
     "user": "YogiBud",
-    "total": 8,
-    "commits": 0,
-    "commit_points": 0,
-    "opened_prs": 0,
-    "opened_pr_points": 0,
-    "merged_prs": 0,
-    "merged_pr_points": 0,
+    "total": 53,
+    "commits": 1,
+    "commit_points": 5,
+    "opened_prs": 1,
+    "opened_pr_points": 10,
+    "merged_prs": 1,
+    "merged_pr_points": 20,
     "scoped_bonus_count": 0,
     "scoped_bonus_points": 0,
     "reviews": 1,
     "review_points": 8,
-    "first_merge_bonus_count": 0,
-    "first_merge_bonus_points": 0,
+    "first_merge_bonus_count": 1,
+    "first_merge_bonus_points": 10,
     "reasons": [
+      {
+        "reason": "Commit points",
+        "points": 5
+      },
+      {
+        "reason": "Opened PR",
+        "points": 10
+      },
+      {
+        "reason": "Merged PR",
+        "points": 20
+      },
+      {
+        "reason": "First merged PR bonus",
+        "points": 10
+      },
       {
         "reason": "Submitted review",
         "points": 8
